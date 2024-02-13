@@ -1,0 +1,97 @@
+{"VivScatterPlotNew":
+{"name":"Viv Scatter Plot (experimental / deprecated)",
+"params":[{"type":"number","name":"x"},{"type":"number","name":"y"}]},
+
+"wgl_scatter_plot":{"name":"2D Scatter Plot",
+"params":[{"type":"number","name":"X axis"},{"type":"number","name":"Y axis"}]},
+
+"density_scatter_plot":{"name":"Density Scatter Plot",
+"params":[{"type":"number","name":"X axis"},{"type":"number","name":"Y axis"},{"type":"text","name":"Category Column"}]},
+
+"image_scatter_plot":
+{"name":"Centroid Plot","required":["regions"]},
+
+"viv_scatter_plot":
+{"name":"Viv Scatter Plot"},
+
+"VivMdvRegionReact":{"name":"Viv Scatter Plot (react)"},
+
+"WordCloud2":{"name":"WordCloud (React)",
+"params":[{"type":["text","multitext"],"name":"text"},{"type":["text","multitext"],"name":"word size"}]},
+
+"bar_chart":{"name":"Histogram",
+"params":[{"type":"number","name":"Frequency Data"}]},
+
+"row_chart":{"name":"Row Chart",
+"params":[{"type":["text","multitext","text16"],"name":"Category"}]},
+
+"wordcloud":{"name":"Word Cloud",
+"params":[{"type":["text","multitext"],"name":"Category"}]},
+
+"table_chart":{"name":"Table",
+"params":[{"type":"_multi_column:all","name":"Columns To Display"}]},
+
+"wgl_3d_scatter_plot":{"name":"3D Scatter Plot",
+"params":[{"type":"number","name":"X axis"},{"type":"number","name":"Y axis"},{"type":"number","name":"Z axis"}]},
+
+"ring_chart":{"name":"Pie Chart",
+"params":[{"type":"text","name":"Category"}]},
+
+"text_box_chart":{"name":"Text Box",
+"params":[]},
+
+"heat_map":{"name":"Heat Map",
+"params":[{"type":"text","name":"Categories on x-axis"},{"type":"_multi_column:number","name":"Fields on y axis"}]},
+
+"violin_plot":{"name":"Violin Plot",
+"params":[{"type":"text","name":"Category (X axis)"},{"type":"number","name":"Value (Y axis)"}]},
+
+"box_plot":{"name":"Box Plot",
+"params":[{"type":"text","name":"Category (X axis)"},{"type":"number","name":"Value (Y axis)"}]},
+
+"sankey_chart":{"name":"Sankey Diagram",
+"params":[{"type":"text","name":"First Group"},{"type":"text","name":"Second Group"}]},
+
+"multi_line_chart":{"name":"Multi Line Chart","methodsUsingColumns":["changeCategories"],
+"params":[{"type":"number","name":"Value (X axis)"},{"type":"text","name":"Categories to show"}]},
+
+"selection_dialog":{"name":"Selection Dialog",
+"params":[{"type":"_multi_column:all","name":"Columns To filter"}]},
+
+"stacked_row_chart":{"name":"Stacked Row Chart",
+"params":[{"type":"text","name":"Category y axis"},{"type":"text","name":"Category x axis"}]},
+
+"row_summary_box":{"name":"Row Summary Box",
+"params":[{"type":"_multi_column:all","name":"Values To Display"}]},
+
+"cell_network_chart":{"name":"Spatial Connectivity Map",
+"required":["interactions"],"methodsUsingColumns":["changeLinkThicknessParameter","changeLinkLengthParameter","changeLinkColorParameter"]},
+
+"single_heat_map":{"name":"Interaction Matrix",
+"required":["interactions"],"methodsUsingColumns":["changeValues"]},
+
+"dot_plot":{"name":"Dot Plot",
+"params":[{"type":"text","name":"Categories on x-axis"},{"type":"_multi_column:number","name":"Fields on y axis"}]},
+
+"image_table_chart":{"name":"Image Table",
+"required":["images"],"methodsUsingColumns":["setImageLabel","sortBy","setImageTitle"],"configEntriesUsingColumns":["image_label","sortBy","image_title"]},
+
+"cell_radial_chart":{"name":"Radial Connectivty Map",
+"required":["interactions"],"methodsUsingColumns":["setLinkThicknessColumn"]},
+
+"ImageScatterChart":{"name":"Image Scatter Plot",
+"required":["images"],"configEntriesUsingColumns":["image_key","image_title"],"params":[{"type":"number","name":"X axis"},{"type":"number","name":"Y axis"}]},
+
+"custom_box_plot":{"name":"Abundance Box Plot",
+"params":[{"type":"text","name":"Sample Group"},{"type":"text","name":"Sample"},{"type":"text","name":"Categories"}]},
+
+"density_box_plot":{"name":"Density Box Plot",
+"required":["regions"]},
+
+"single_series_chart":{"name":"Single Interaction Chart"},
+
+"genome_browser":{"name":"Genome Browser",
+"methodsUsingColumns":["setLabelFunction"],"configEntriesUsingColumns":["feature_label","color_wig_tracks_by","feature_present_column"],"params":[],"required":["genome_browser"]},
+
+"deeptools_heatmap":{"required":["deeptools"],"name":"DeepTools HeatMap"}}
+
