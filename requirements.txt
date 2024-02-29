@@ -1,0 +1,11 @@
+streamlit
+streamlit_app
+langchain
+pydantic
+typing
+time
+vertexai
+google
+os
+requests
+time
