@@ -17,7 +17,7 @@ from typing import List
 from pydantic import BaseModel
 
 # Vertex AI
-#from google.cloud import aiplatform
+from google.cloud import aiplatform
 import vertexai
 #from vertexai.language_models import CodeGenerationModel
 
