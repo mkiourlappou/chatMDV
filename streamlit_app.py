@@ -22,7 +22,7 @@ import vertexai
 #from vertexai.language_models import CodeGenerationModel
 
 # Streamlit
-import streamlit_app as st
+import streamlit as st
 
 # Other
 import os
