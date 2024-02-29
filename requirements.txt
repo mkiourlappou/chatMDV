@@ -4,5 +4,4 @@ pydantic
 typing
 vertexai
 google
-os
 requests
