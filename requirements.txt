@@ -4,5 +4,5 @@ pydantic
 typing
 vertexai
 google
-google.cloud
+google-cloud
 requests
