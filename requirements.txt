@@ -2,7 +2,6 @@ streamlit
 langchain
 pydantic
 typing
-time
 vertexai
 google
 os
