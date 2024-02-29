@@ -2,6 +2,6 @@ streamlit
 langchain
 pydantic
 typing
+google-cloud
 vertexai
-google
 requests
