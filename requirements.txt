@@ -3,6 +3,7 @@ langchain
 pydantic
 typing
 google
+google.cloud
 google-cloud
 vertexai
 requests
