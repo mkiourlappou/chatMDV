@@ -32,7 +32,6 @@ import requests, time
 
 
 ### The following needs fixing with the Secrets thing
-import google.auth
 
 # Retrieve the JSON key file path from Streamlit Secrets
 key_path = st.secrets["key_file_path"]
