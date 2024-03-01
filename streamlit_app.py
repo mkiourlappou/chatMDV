@@ -40,9 +40,9 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials
 
 #GOOGLE_APPLICATION_CREDENTIALS, project_id = google.auth.default()
 
-vertexai.init(project=st.secrets["project_id"])
+vertexai.init(project=st.secrets["credentials"]["project_id"])
 
-GITHUB_TOKEN = st.secrets["github_token"]  # @param {type:"string"}
+GITHUB_TOKEN = st.secrets["credentials"]["github_token"]  # @param {type:"string"}
 GITHUB_REPO = "mkiourlappou/chatMDV"  # @param {type:"string"}
 
 
