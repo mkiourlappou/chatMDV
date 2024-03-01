@@ -34,13 +34,13 @@ import requests, time
 ### The following needs fixing with the Secrets thing
 
 # Retrieve the JSON key file path from Streamlit Secrets
-key_path = st.secrets["key_file_path"]
+credentials = st.secrets["credentials"]
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = key_path
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials
 
-GOOGLE_APPLICATION_CREDENTIALS, project_id = google.auth.default()
+#GOOGLE_APPLICATION_CREDENTIALS, project_id = google.auth.default()
 
-vertexai.init(project=project_id) #st.secrets["project_id"])
+vertexai.init(project=st.secrets["project_id"])
 
 GITHUB_TOKEN = st.secrets["github_token"]  # @param {type:"string"}
 GITHUB_REPO = "mkiourlappou/chatMDV"  # @param {type:"string"}
