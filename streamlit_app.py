@@ -37,9 +37,6 @@ from google.oauth2 import service_account
 credentials = service_account.Credentials.from_service_account_info(
     st.secrets["gcs_connections"]
 
-documentai.DocumentProcessorServiceClient(credentials=credentials)
-
-
 
 ### The following needs fixing with the Secrets thing
 
@@ -48,7 +45,7 @@ key_path = st.secrets["key_file_path"]
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = key_path
 
-GOOGLE_APPLICATION_CREDENTIALS, project_id = google.auth.default()
+credentials, project_id = google.auth.default()
 
 vertexai.init(project=st.secrets["project_id"])
 
