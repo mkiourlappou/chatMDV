@@ -30,12 +30,16 @@ import google.auth
 from pprint import pprint
 import requests, time
 
+from google.oauth2 import service_account
 
 ### The following needs fixing with the Secrets thing
 
 # Retrieve the JSON key file path from Streamlit Secrets
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = st.secrets["credentials"]
+credentials = service_account.Credentials.from_service_account_info(
+                st.secrets["credentials"])
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials
 
 #GOOGLE_APPLICATION_CREDENTIALS, project_id = google.auth.default()
 
