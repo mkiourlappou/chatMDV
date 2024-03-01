@@ -36,8 +36,7 @@ from google.oauth2 import service_account
 
 # Retrieve the JSON key file path from Streamlit Secrets
 
-credentials = service_account.Credentials.from_service_account_info(
-                st.secrets["credentials"])
+credentials = st.secrets["credentials"] #service_account.Credentials.from_service_account_info(st.secrets["credentials"])
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials
 
