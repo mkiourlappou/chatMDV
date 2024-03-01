@@ -31,13 +31,6 @@ from pprint import pprint
 import requests, time
 
 
-from google.cloud import documentai
-from google.oauth2 import service_account
-
-credentials = service_account.Credentials.from_service_account_info(
-    st.secrets["gcs_connections"])
-
-
 ### The following needs fixing with the Secrets thing
 
 # Retrieve the JSON key file path from Streamlit Secrets
@@ -45,9 +38,9 @@ key_path = st.secrets["key_file_path"]
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = key_path
 
-credentials, project_id = google.auth.default()
+GOOGLE_APPLICATION_CREDENTIALS, project_id = google.auth.default()
 
-vertexai.init(project=st.secrets["project_id"])
+vertexai.init(project=project_id) #st.secrets["project_id"])
 
 GITHUB_TOKEN = st.secrets["github_token"]  # @param {type:"string"}
 GITHUB_REPO = "mkiourlappou/chatMDV"  # @param {type:"string"}
