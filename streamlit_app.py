@@ -44,6 +44,8 @@ key_path = st.secrets["key_file_path"]
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = key_path
 
+GOOGLE_APPLICATION_CREDENTIALS, file_id = google.auth.default()
+
 vertexai.init(project=st.secrets["file_id"])
 
 GITHUB_TOKEN = st.secrets["github_token"]  # @param {type:"string"}
