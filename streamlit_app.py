@@ -106,12 +106,12 @@ def crawl_github_repo(url, is_sub_dir, access_token=f"{GITHUB_TOKEN}"):
 code_files_urls = crawl_github_repo(GITHUB_REPO, False, GITHUB_TOKEN)
 
 # Write list to a file so you do not have to download each time
-with open(
-    "/Users/maria/Documents/wellcome_human_gen_project/ChatBioinformatics/code_files_urls_chatBio.txt",
-    "w",
-) as f:
-    for item in code_files_urls:
-        f.write(item + "\n")
+#with open(
+#    "/Users/maria/Documents/wellcome_human_gen_project/ChatBioinformatics/code_files_urls_chatBio.txt",
+#    "w",
+#) as f:
+#    for item in code_files_urls:
+#        f.write(item + "\n")
 
 
 # Extracts the python code from an .py file from github
@@ -127,10 +127,10 @@ def extract_python_code_from_py(github_url):
     return python_code
 
 
-with open(
-    "/Users/maria/Documents/wellcome_human_gen_project/ChatBioinformatics/code_files_urls_chatBio.txt"
-) as f:
-    code_files_urls = f.read().splitlines()
+#with open(
+#    "/Users/maria/Documents/wellcome_human_gen_project/ChatBioinformatics/code_files_urls_chatBio.txt"
+#) as f:
+#    code_files_urls = f.read().splitlines()
 
 code_strings = []
 
