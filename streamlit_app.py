@@ -32,16 +32,6 @@ import requests, time
 
 from google.oauth2 import service_account
 
-### The following needs fixing with the Secrets thing
-
-# Retrieve the JSON key file path from Streamlit Secrets
-
-#credentials = st.secrets["credentials"] #service_account.Credentials.from_service_account_info(st.secrets["credentials"])
-
-#os.environ.setdefault("GOOGLE_APPLICATION_CREDENTIALS","credentials")
-
-#credentials, st.secrets["other"]["project_id"] = google.auth.default()
-
 
 credentials = service_account.Credentials.from_service_account_info(st.secrets["credentials"])
 
@@ -52,7 +42,7 @@ GITHUB_REPO = "mkiourlappou/chatMDV"  # @param {type:"string"}
 
 
 ### Streamlit components
-st.title("🦜🔗 Quickstart App")
+st.title("🦜🔗 Generate an MDV graph")
 
 # openai_api_key = st.sidebar.text_input("OpenAI API Key")
 
@@ -105,14 +95,6 @@ def crawl_github_repo(url, is_sub_dir, access_token=f"{GITHUB_TOKEN}"):
 
 code_files_urls = crawl_github_repo(GITHUB_REPO, False, GITHUB_TOKEN)
 
-# Write list to a file so you do not have to download each time
-#with open(
-#    "/Users/maria/Documents/wellcome_human_gen_project/ChatBioinformatics/code_files_urls_chatBio.txt",
-#    "w",
-#) as f:
-#    for item in code_files_urls:
-#        f.write(item + "\n")
-
 
 # Extracts the python code from an .py file from github
 def extract_python_code_from_py(github_url):
@@ -125,12 +107,6 @@ def extract_python_code_from_py(github_url):
     python_code = response.text
 
     return python_code
-
-
-#with open(
-#    "/Users/maria/Documents/wellcome_human_gen_project/ChatBioinformatics/code_files_urls_chatBio.txt"
-#) as f:
-#    code_files_urls = f.read().splitlines()
 
 code_strings = []
 
@@ -199,16 +175,15 @@ def generate_response(input_text):
         retriever=retriever,
         return_source_documents=True,
     )
-    st.info(qa_chain(input_text))
+    results = qa_chain({"query": input_text})
+    return results
 
 
 with st.form("my_form"):
     text = st.text_area(
         "Enter text:",
-        "What are the three key pieces of advice for learning how to code?",
+        "What type of graph would you like to generate today?",
     )
     submitted = st.form_submit_button("Submit")
-    # if not openai_api_key.startswith("sk-"):
-    #    st.warning("Please enter your OpenAI API key!", icon="⚠")
-    # if submitted and openai_api_key.startswith("sk-"):
-    generate_response(text)
+    results = generate_response(text)
+    st.info(results["result"])
