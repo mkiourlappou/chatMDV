@@ -42,7 +42,10 @@ from google.oauth2 import service_account
 
 #credentials, st.secrets["other"]["project_id"] = google.auth.default()
 
-vertexai.init(project=st.secrets["other"]["project_id"])
+
+credentials = service_account.Credentials.from_service_account_info(st.secrets["credentials"])
+
+vertexai.init(project=st.secrets["other"]["project_id"], credentials=credentials)
 
 GITHUB_TOKEN = st.secrets["other"]["github_token"]  # @param {type:"string"}
 GITHUB_REPO = "mkiourlappou/chatMDV"  # @param {type:"string"}
