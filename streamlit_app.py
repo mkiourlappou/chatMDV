@@ -35,7 +35,7 @@ from google.cloud import documentai
 from google.oauth2 import service_account
 
 credentials = service_account.Credentials.from_service_account_info(
-    st.secrets["gcs_connections"]
+    st.secrets["gcs_connections"])
 
 
 ### The following needs fixing with the Secrets thing
