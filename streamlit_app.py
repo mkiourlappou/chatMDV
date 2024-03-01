@@ -31,16 +31,20 @@ from pprint import pprint
 import requests, time
 
 
+from google.cloud import documentai
+from google.oauth2 import service_account
+
+credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcs_connections"]
+
+client = documentai.DocumentProcessorServiceClient(credentials=credentials)
+
+
+
 ### The following needs fixing with the Secrets thing
 
 # Retrieve the JSON key file path from Streamlit Secrets
 key_path = st.secrets["key_file_path"]
-
-# Set the environment variable to point to the key file
-# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = key_path
-
-# Authenticate using the key file
-# credentials, project_id = google.auth.default()
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = key_path
 
