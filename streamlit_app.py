@@ -38,9 +38,9 @@ from google.oauth2 import service_account
 
 credentials = st.secrets["credentials"] #service_account.Credentials.from_service_account_info(st.secrets["credentials"])
 
-#os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials
+os.environ.setdefault("GOOGLE_APPLICATION_CREDENTIALS",credentials)
 
-credentials, st.secrets["other"]["project_id"] = google.auth.default()
+#credentials, st.secrets["other"]["project_id"] = google.auth.default()
 
 vertexai.init(project=st.secrets["other"]["project_id"])
 
