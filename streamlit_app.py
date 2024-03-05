@@ -12,39 +12,31 @@ from langchain.text_splitter import Language
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 
-import time
 from typing import List
 from pydantic import BaseModel
 
 # Vertex AI
 from google.cloud import aiplatform
 import vertexai
-#from vertexai.language_models import CodeGenerationModel
 
 # Streamlit
 import streamlit as st
 
 # Other
 import os
-import google.auth
 from pprint import pprint
 import requests, time
 
-from google.oauth2 import service_account
+import google.auth
 
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = (
+    "/Users/maria/.config/gcloud/application_default_credentials.json"  # key_path
+)
 
-credentials = service_account.Credentials.from_service_account_info(st.secrets["credentials"])
+vertexai.init(project="fine-cycling-414213")  # st.secrets["file_id"])
 
-vertexai.init(project=st.secrets["other"]["project_id"], credentials=credentials)
-
-GITHUB_TOKEN = st.secrets["other"]["github_token"]  # @param {type:"string"}
+GITHUB_TOKEN = "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"  # st.secrets["github_token"]  # @param {type:"string"}
 GITHUB_REPO = "mkiourlappou/chatMDV"  # @param {type:"string"}
-
-
-### Streamlit components
-st.title("🦜🔗 Generate an MDV graph")
-
-# openai_api_key = st.sidebar.text_input("OpenAI API Key")
 
 
 ### LLM
@@ -95,6 +87,14 @@ def crawl_github_repo(url, is_sub_dir, access_token=f"{GITHUB_TOKEN}"):
 
 code_files_urls = crawl_github_repo(GITHUB_REPO, False, GITHUB_TOKEN)
 
+# Write list to a file so you do not have to download each time
+with open(
+    "/Users/maria/Documents/wellcome_human_gen_project/ChatBioinformatics/code_files_urls_chatBio.txt",
+    "w",
+) as f:
+    for item in code_files_urls:
+        f.write(item + "\n")
+
 
 # Extracts the python code from an .py file from github
 def extract_python_code_from_py(github_url):
@@ -107,6 +107,12 @@ def extract_python_code_from_py(github_url):
     python_code = response.text
 
     return python_code
+
+
+with open(
+    "/Users/maria/Documents/wellcome_human_gen_project/ChatBioinformatics/code_files_urls_chatBio.txt"
+) as f:
+    code_files_urls = f.read().splitlines()
 
 code_strings = []
 
@@ -163,27 +169,41 @@ qa_chain = RetrievalQA.from_llm(
     return_source_documents=True,
 )
 
-# user_question = "Heatmap of the isoform extension, the isoform mean length, the isoform min length and the isoform max length VS the Drosophila label status."
+### Streamlit components
+st.set_page_config(
+    page_title="Ask MDV to generate a graph", page_icon="🦜🔗", layout="wide"
+)
 
-# results = qa_chain({"query": user_question})
-
-
-def generate_response(input_text):
-    qa_chain = RetrievalQA.from_llm(
-        llm=code_llm,
-        prompt=prompt_RAG_template,
-        retriever=retriever,
-        return_source_documents=True,
-    )
-    results = qa_chain({"query": input_text})
-    return results
+st.title("Ask MDV to generate a graph")
 
 
-with st.form("my_form"):
-    text = st.text_area(
-        "Enter text:",
-        "What type of graph would you like to generate today?",
-    )
-    submitted = st.form_submit_button("Submit")
-    results = generate_response(text)
-    st.info(results["result"])
+# check for messages in session and create if not exists
+if "messages" not in st.session_state.keys():
+    st.session_state.messages = [
+        {
+            "role": "assistant",
+            "content": "What type of MDV graph would you like to generate?",
+        }
+    ]
+
+# Display all messages
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.write(message["content"])
+
+user_prompt = st.chat_input()
+
+if user_prompt is not None:
+    st.session_state.messages.append({"role": "user", "content": user_prompt})
+    with st.chat_message("user"):
+        st.write(user_prompt)
+
+
+if st.session_state.messages[-1]["role"] != "assistant":
+    with st.chat_message("assistant"):
+        with st.spinner("Loading..."):
+            ai_response_all = qa_chain({"query": user_prompt})
+            ai_response = ai_response_all["result"]
+            st.write(ai_response)
+    new_ai_message = {"role": "assistant", "content": ai_response}
+    st.session_state.messages.append(new_ai_message)
