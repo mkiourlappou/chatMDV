@@ -29,13 +29,11 @@ import requests, time
 
 import google.auth
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = (
-    "/Users/maria/.config/gcloud/application_default_credentials.json"  # key_path
-)
+credentials = service_account.Credentials.from_service_account_info(st.secrets["credentials"])
 
-vertexai.init(project="fine-cycling-414213")  # st.secrets["file_id"])
+vertexai.init(project=st.secrets["other"]["project_id"], credentials=credentials)
 
-GITHUB_TOKEN = "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"  # st.secrets["github_token"]  # @param {type:"string"}
+GITHUB_TOKEN = st.secrets["other"]["github_token"]  # @param {type:"string"}
 GITHUB_REPO = "mkiourlappou/chatMDV"  # @param {type:"string"}
 
 
