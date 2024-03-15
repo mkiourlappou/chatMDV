@@ -34,7 +34,7 @@ from langchain_experimental.agents import create_pandas_dataframe_agent
 import pandas as pd
 
 
-os.environ["OPENAI_API_KEY"] = st.secrets["credentials"]["openAI_API_key"]
+os.environ["OPENAI_API_KEY"] = st.secrets["openAI_API_key"]
 
 # vertexai.init(project=st.secrets["other"]["project_id"], credentials=credentials)
 
