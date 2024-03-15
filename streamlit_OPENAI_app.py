@@ -234,7 +234,7 @@ if st.session_state.messages[-1]["role"] != "assistant":
         with st.spinner("Loading..."):
             ai_response_all = qa_chain({"query": user_prompt})
             ai_response_med = ai_response_all["result"]
-            #agent = create_pandas_dataframe_agent(code_llm, df, verbose=True)
+            agent = create_pandas_dataframe_agent(code_llm, df, verbose=True)
             #prompt = prompt_engineering(ai_response_med)
             #ai_response = agent.invoke(prompt)
             #st.write(ai_response["output"])
