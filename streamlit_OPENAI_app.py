@@ -1,7 +1,4 @@
 # LangChain
-from langchain.llms import VertexAI
-from langchain.embeddings import VertexAIEmbeddings
-
 from langchain.schema import HumanMessage, SystemMessage
 from langchain.schema.document import Document
 
@@ -15,10 +12,6 @@ from langchain.chains import RetrievalQA
 from typing import List
 from pydantic import BaseModel
 
-# Vertex AI
-from google.cloud import aiplatform
-import vertexai
-
 # Streamlit
 import streamlit as st
 
@@ -26,9 +19,6 @@ import streamlit as st
 import os
 from pprint import pprint
 import requests, time
-
-import google.auth
-from google.oauth2 import service_account
 
 from langchain.schema.document import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
