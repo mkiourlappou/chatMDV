@@ -2,6 +2,7 @@ streamlit
 langchain
 langchain_openai
 langchain_experimental
+langchain_experimental.agents.agent_toolkits.pandas.base
 pydantic
 typing
 google-cloud-aiplatform
