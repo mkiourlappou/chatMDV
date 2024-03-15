@@ -26,7 +26,7 @@ from langchain.vectorstores import FAISS
 from langchain.text_splitter import Language
 from langchain_openai import OpenAIEmbeddings
 from langchain.chains import RetrievalQA
-import langchain_experimental as lp
+#import langchain_experimental as lp
 from langchain.chat_models import ChatOpenAI
 from langchain_experimental.agents import create_pandas_dataframe_agent
 
@@ -35,8 +35,6 @@ import pandas as pd
 
 
 os.environ["OPENAI_API_KEY"] = st.secrets["openAI_API_key"]
-
-# vertexai.init(project=st.secrets["other"]["project_id"], credentials=credentials)
 
 GITHUB_TOKEN = st.secrets["other"]["github_token"]  # @param {type:"string"}
 GITHUB_REPO = "mkiourlappou/chatMDV"  # @param {type:"string"}
@@ -236,7 +234,7 @@ if st.session_state.messages[-1]["role"] != "assistant":
         with st.spinner("Loading..."):
             ai_response_all = qa_chain({"query": user_prompt})
             ai_response_med = ai_response_all["result"]
-            #agent = lp.agents.agent_toolkits.pandas.base.create_pandas_dataframe_agent(code_llm, df, verbose=True)
+            #agent = create_pandas_dataframe_agent(code_llm, df, verbose=True)
             #prompt = prompt_engineering(ai_response_med)
             #ai_response = agent.invoke(prompt)
             #st.write(ai_response["output"])
