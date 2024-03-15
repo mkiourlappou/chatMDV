@@ -237,7 +237,7 @@ uploaded_file = st.file_uploader(
 
 if uploaded_file:
     df = load_data(uploaded_file)
-    df = df.iloc[:100, :100]
+    df = df.iloc[:10, :10]
     file_name = uploaded_file.name
 
 
@@ -247,7 +247,6 @@ if st.session_state.messages[-1]["role"] != "assistant":
             ai_response_all = qa_chain({"query": user_prompt})
             ai_response_med = ai_response_all["result"]
             agent = lp.create_pandas_dataframe_agent(code_llm, df, verbose=True)
-            # st.write(ai_response)
             prompt = prompt_engineering(ai_response_med)
             ai_response = agent.invoke(prompt)
             st.write(ai_response["output"])
