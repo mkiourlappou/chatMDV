@@ -236,9 +236,10 @@ if st.session_state.messages[-1]["role"] != "assistant":
         with st.spinner("Loading..."):
             ai_response_all = qa_chain({"query": user_prompt})
             ai_response_med = ai_response_all["result"]
-            agent = lp.agents.agent_toolkits.pandas.base.create_pandas_dataframe_agent(code_llm, df, verbose=True)
-            prompt = prompt_engineering(ai_response_med)
-            ai_response = agent.invoke(prompt)
-            st.write(ai_response["output"])
-    new_ai_message = {"role": "assistant", "content": ai_response["output"]}
+            #agent = lp.agents.agent_toolkits.pandas.base.create_pandas_dataframe_agent(code_llm, df, verbose=True)
+            #prompt = prompt_engineering(ai_response_med)
+            #ai_response = agent.invoke(prompt)
+            #st.write(ai_response["output"])
+            st.write(ai_response_med)
+    new_ai_message = {"role": "assistant", "content": ai_response_med} #ai_response["output"]}
     st.session_state.messages.append(new_ai_message)
