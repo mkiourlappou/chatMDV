@@ -26,7 +26,7 @@ from langchain.vectorstores import FAISS
 from langchain.text_splitter import Language
 from langchain_openai import OpenAIEmbeddings
 from langchain.chains import RetrievalQA
-import langchain_experimental.agents.agent_toolkits.pandas.base as lp
+import langchain_experimental as lp
 from langchain.chat_models import ChatOpenAI
 from langchain_experimental.agents import create_pandas_dataframe_agent
 
@@ -236,7 +236,7 @@ if st.session_state.messages[-1]["role"] != "assistant":
         with st.spinner("Loading..."):
             ai_response_all = qa_chain({"query": user_prompt})
             ai_response_med = ai_response_all["result"]
-            agent = lp.create_pandas_dataframe_agent(code_llm, df, verbose=True)
+            agent = lp.agents.agent_toolkits.pandas.base.create_pandas_dataframe_agent(code_llm, df, verbose=True)
             prompt = prompt_engineering(ai_response_med)
             ai_response = agent.invoke(prompt)
             st.write(ai_response["output"])
